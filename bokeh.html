@@ -106,12 +106,8 @@ function create() {
   }
 }
 
-function init() {
-  resize();
-  create();
-  setInterval(function() 
-  {
-  	  	
+function animateplz() 
+{
   	ctx2.clearRect( 0, 0, cw, ch );
   	ctx2.globalCompositeOperation = 'source-over';
   	ctx2.shadowBlur = 0;
@@ -140,7 +136,14 @@ function init() {
   	  
   	  part.tick++;
   	}
-  }, 1000/60);
+}
+
+
+function init() 
+{
+  resize();
+  create();
+  var run = setInterval(animateplz,1000/60)   
 }
 
 function resize() {
