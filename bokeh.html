@@ -32,7 +32,7 @@ canvas {
 <canvas id="c1"></canvas>
 <canvas id="c2"></canvas>
 
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquerymobile/1.4.5/jquery.mobile.min.js"></script>
 	<script type="text/javascript">
 		
 var c1 = document.getElementById( 'c1' ),
@@ -112,8 +112,8 @@ function init() {
   loop();
 }
 
-function loop() {
-  requestAnimationFrame( loop );
+function loop(timestamp) {
+  window.requestAnimationFrame( loop );
   
   ctx2.clearRect( 0, 0, cw, ch );
   ctx2.globalCompositeOperation = 'source-over';
