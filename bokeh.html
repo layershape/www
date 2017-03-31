@@ -109,44 +109,38 @@ function create() {
 function init() {
   resize();
   create();
-  loop();
-}
-
-function loop(timestamp) {
-  window.requestAnimationFrame = window.requestAnimationFrame ||
-                               window.mozRequestAnimationFrame ||
-                               window.webkitRequestAnimationFrame ||             
-                               window.msRequestAnimationFrame;
-  window.requestAnimationFrame( loop );
-  
-  ctx2.clearRect( 0, 0, cw, ch );
-  ctx2.globalCompositeOperation = 'source-over';
-  ctx2.shadowBlur = 0;
-  ctx2.drawImage( c1, 0, 0 );
-  ctx2.globalCompositeOperation = 'lighter';
-  
-  var i = parts.length;
-  ctx2.shadowBlur = 15;
-  ctx2.shadowColor = '#fff';
-  while( i-- ) {
-    var part = parts[ i ];
-    
-    part.x += Math.cos( part.angle ) * part.vel;
-    part.y += Math.sin( part.angle ) * part.vel;
-    part.angle += rand( -0.05, 0.05 );
-    
-    ctx2.beginPath();
-    ctx2.arc( part.x, part.y, part.radius, 0, twopi );
-    ctx2.fillStyle = hsla( 0, 0, 100, 0.075 + Math.cos( part.tick * 0.02 ) * 0.05 );
-    ctx2.fill();
-    
-    if( part.x - part.radius > cw ) { part.x = -part.radius }
-    if( part.x + part.radius < 0 )  { part.x = cw + part.radius }
-    if( part.y - part.radius > ch ) { part.y = -part.radius }
-    if( part.y + part.radius < 0 )  { part.y = ch + part.radius }
-    
-    part.tick++;
-  }
+  setInterval(function() 
+  {
+  	  	
+  	ctx2.clearRect( 0, 0, cw, ch );
+  	ctx2.globalCompositeOperation = 'source-over';
+  	ctx2.shadowBlur = 0;
+  	ctx2.drawImage( c1, 0, 0 );
+  	ctx2.globalCompositeOperation = 'lighter';
+  	
+  	var i = parts.length;
+  	ctx2.shadowBlur = 15;
+  	ctx2.shadowColor = '#fff';
+  	while( i-- ) {
+  	  var part = parts[ i ];
+  	  
+  	  part.x += Math.cos( part.angle ) * part.vel;
+  	  part.y += Math.sin( part.angle ) * part.vel;
+  	  part.angle += rand( -0.05, 0.05 );
+  	  
+  	  ctx2.beginPath();
+  	  ctx2.arc( part.x, part.y, part.radius, 0, twopi );
+  	  ctx2.fillStyle = hsla( 0, 0, 100, 0.075 + Math.cos( part.tick * 0.02 ) * 0.05 );
+  	  ctx2.fill();
+  	  
+  	  if( part.x - part.radius > cw ) { part.x = -part.radius }
+  	  if( part.x + part.radius < 0 )  { part.x = cw + part.radius }
+  	  if( part.y - part.radius > ch ) { part.y = -part.radius }
+  	  if( part.y + part.radius < 0 )  { part.y = ch + part.radius }
+  	  
+  	  part.tick++;
+  	}
+  }, 1000/60);
 }
 
 function resize() {
