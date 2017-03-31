@@ -113,6 +113,10 @@ function init() {
 }
 
 function loop(timestamp) {
+  window.requestAnimationFrame = window.requestAnimationFrame ||
+                               window.mozRequestAnimationFrame ||
+                               window.webkitRequestAnimationFrame ||             
+                               window.msRequestAnimationFrame;
   window.requestAnimationFrame( loop );
   
   ctx2.clearRect( 0, 0, cw, ch );
